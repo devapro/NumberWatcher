@@ -117,6 +117,7 @@ class FormatterNumberWatcher private constructor(
         var value = getValue(editable)
         if (value.contains("-")) {
             value = "-" + minusRe.replace(value, "")
+            editable.replace(0, editable.length, value)
         }
         val parts = value.split(".")
         when {
@@ -186,7 +187,7 @@ class FormatterNumberWatcher private constructor(
                 if (it >= 0) {
                     throw Exception("must be less than 0")
                 } else if (!allowNegativeValues) {
-                    throw Exception("Only for negative values. Set allowNegativeValues to true")
+                    allowNegativeValues = true
                 }
             }
             return FormatterNumberWatcher(

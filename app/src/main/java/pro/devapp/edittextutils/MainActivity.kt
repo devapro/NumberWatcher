@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         val floatsInput = findViewById<EditText>(R.id.floatsInput)
         val floatsInputWatcherBuilder = FormatterNumberWatcher.Builder()
-        floatsInputWatcherBuilder.numbersAfterDecimalPoint =
-            2 // optional, for example we need only to numbers after decimal point
+        // optional, for example we need only to numbers after decimal point
+        floatsInputWatcherBuilder.numbersAfterDecimalPoint = 2
         floatsInputWatcherBuilder.maxValue = 1000f // optional, for example max value 1000
         floatsInput.addTextChangedListener(floatsInputWatcherBuilder.build(floatsInput) {
             Log.d("floatsInput", it)
@@ -30,16 +30,32 @@ class MainActivity : AppCompatActivity() {
 
         val withEndStringInput = findViewById<EditText>(R.id.withEndString)
         val withEndStringInputWatcherBuilder = FormatterNumberWatcher.Builder()
-        withEndStringInputWatcherBuilder.numbersAfterDecimalPoint =
-            2 // optional, for example we need only to numbers after decimal point
+        // optional, for example we need only to numbers after decimal point
+        withEndStringInputWatcherBuilder.numbersAfterDecimalPoint = 2
         withEndStringInputWatcherBuilder.maxValue = 100f // optional, for example max value 100
-        withEndStringInputWatcherBuilder.additional =
-            "%" // optional, for example add % to the end of input
+        // optional, for example add % to the end of input
+        withEndStringInputWatcherBuilder.additional = "%"
         withEndStringInput.addTextChangedListener(
             withEndStringInputWatcherBuilder.build(
                 withEndStringInput
             ) {
                 Log.d("withEndStringInput", it)
+            })
+
+        val negativeValuesInput = findViewById<EditText>(R.id.negativeValuesInput)
+        val negativeValuesInputWatcherBuilder = FormatterNumberWatcher.Builder()
+        // optional, for example we need only to numbers after decimal point
+        negativeValuesInputWatcherBuilder.numbersAfterDecimalPoint = 2
+        negativeValuesInputWatcherBuilder.maxValue = 100f // optional, for example max value 100
+        negativeValuesInputWatcherBuilder.minValue = -200f // optional, for example min value -200
+        negativeValuesInputWatcherBuilder.allowNegativeValues = true
+        // optional, for example add % to the end of input
+        negativeValuesInputWatcherBuilder.additional = "%"
+        negativeValuesInput.addTextChangedListener(
+            negativeValuesInputWatcherBuilder.build(
+                negativeValuesInput
+            ) {
+                Log.d("negativeValuesInput", it)
             })
     }
 }

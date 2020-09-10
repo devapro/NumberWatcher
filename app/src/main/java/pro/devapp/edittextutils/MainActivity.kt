@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //If you need only integer values, ≥0
         val integersInput = findViewById<EditText>(R.id.integersInput)
         val integersInputWatcherBuilder = NumberWatcher.Builder()
         integersInputWatcherBuilder.numbersAfterDecimalPoint = 0 // because we need integers
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("integersInput", it)
         })
 
+        //If you need floats values and only two numbers after decimal point
         val floatsInput = findViewById<EditText>(R.id.floatsInput)
         val floatsInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("floatsInput", it)
         })
 
-
+        //If you want to add any string to the end of the input
         val withEndStringInput = findViewById<EditText>(R.id.withEndString)
         val withEndStringInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("withEndStringInput", it)
             })
 
+        // If you want to allow to users enter values between -100 and 200
         val negativeValuesInput = findViewById<EditText>(R.id.negativeValuesInput)
         val negativeValuesInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point
@@ -59,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("negativeValuesInput", it)
             })
 
+        // If you want to add mask
         val withMaskInput = findViewById<EditText>(R.id.withMaskInput)
         val withMaskInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point

@@ -55,3 +55,36 @@
         Log.d("withEndStringInput", it)
     })
 ```
+
+### If you want to allow to users enter values between -100 and 100
+```kotlin
+val negativeValuesInput = findViewById<EditText>(R.id.negativeValuesInput)
+val negativeValuesInputWatcherBuilder = NumberWatcher.Builder()
+// optional, for example we need only to numbers after decimal point
+negativeValuesInputWatcherBuilder.numbersAfterDecimalPoint = 2
+negativeValuesInputWatcherBuilder.maxValue = 100f // optional, for example max value 100
+negativeValuesInputWatcherBuilder.minValue = -100f // optional, for example min value -100
+negativeValuesInputWatcherBuilder.allowNegativeValues = true
+// optional, for example add % to the end of input
+negativeValuesInputWatcherBuilder.additional = "%"
+negativeValuesInput.addTextChangedListener(negativeValuesInputWatcherBuilder.build(negativeValuesInput) {
+        Log.d("negativeValuesInput", it)
+    })
+```
+
+### If you want to add mask
+```kotlin
+val withMaskInput = findViewById<EditText>(R.id.withMaskInput)
+val withMaskInputWatcherBuilder = NumberWatcher.Builder()
+// optional, for example we need only to numbers after decimal point
+withMaskInputWatcherBuilder.numbersAfterDecimalPoint = 2
+withMaskInputWatcherBuilder.maxValue = 1000000f // optional, for example max value 100
+withMaskInputWatcherBuilder.minValue = -2000000f // optional, for example min value -200
+withMaskInputWatcherBuilder.allowNegativeValues = true
+// optional, for example add % to the end of input
+withMaskInputWatcherBuilder.additional = "%"
+withMaskInputWatcherBuilder.inputMask = "##/##/##"
+withMaskInput.addTextChangedListener(withMaskInputWatcherBuilder.build(withMaskInput) {
+        Log.d("withMaskInput", it)
+    })
+```

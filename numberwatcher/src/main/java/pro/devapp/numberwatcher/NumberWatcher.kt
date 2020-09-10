@@ -15,9 +15,9 @@ class NumberWatcher private constructor(
     allowNegativeValues: Boolean = false
 ) : TextWatcher {
 
-    private val re = if (allowNegativeValues) Regex("[^0-9.,\\-]") else Regex("[^0-9.,]")
-    private val comaRe = Regex("[,]")
-    private val minusRe = Regex("[-]")
+    private val regex = if (allowNegativeValues) Regex("[^0-9.,\\-]") else Regex("[^0-9.,]")
+    private val comaRegex = Regex("[,]")
+    private val minusRegex = Regex("[-]")
     private var isRunning = false
     private var isDeleting = false
     private val additionalLength = additional?.length ?: 0
@@ -133,21 +133,21 @@ class NumberWatcher private constructor(
 
     private fun getValue(editable: Editable): String {
         return if (isDeleting && additional != null && !editable.toString().contains(additional)) {
-            val origValue = comaRe.replace(re.replace(editable, ""), ".")
+            val origValue = comaRegex.replace(regex.replace(editable, ""), ".")
             if (additional != "" && origValue.isNotEmpty()) {
                 origValue.substring(0, origValue.length - 1)
             } else {
                 origValue
             }
         } else {
-            comaRe.replace(re.replace(editable, ""), ".")
+            comaRegex.replace(regex.replace(editable, ""), ".")
         }
     }
 
     private fun removeUnnecessaryChars(editable: Editable) {
         var value = getValue(editable)
         if (value.contains("-")) {
-            value = "-" + minusRe.replace(value, "")
+            value = "-" + minusRegex.replace(value, "")
             editable.replace(0, editable.length, value)
         }
         val parts = value.split(".")

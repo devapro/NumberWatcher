@@ -15,7 +15,8 @@
     <EditText
         android:id="@+id/integersInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,7 +26,8 @@
     <EditText
         android:id="@+id/floatsInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +37,8 @@
     <EditText
         android:id="@+id/withEndString"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +48,8 @@
     <EditText
         android:id="@+id/negativeValuesInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,6 +59,7 @@
     <EditText
         android:id="@+id/withMaskInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal" />
 
 </LinearLayout>

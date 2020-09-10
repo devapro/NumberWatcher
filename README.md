@@ -1,8 +1,8 @@
-# TextWatcher for numbers types
+# TextWatcher for number inputs
 
  - Validate user input
  - Replace "," to "."
- - Get only valid string to listener
+ - Get only valid number string to listener
  - Adjusting numbers after decimal point (set 0 for integer)
  - Adding any string to the input end
  - set max positive value
@@ -44,7 +44,7 @@
     })
 ```
 
-### For adding string to the end of input
+### For adding a string to the end of the input
 ```kotlin
     val withEndStringInput = findViewById<EditText>(R.id.withEndString)
     val withEndStringInputWatcherBuilder = NumberWatcher.Builder()
@@ -56,7 +56,7 @@
     })
 ```
 
-### If you want to allow to users enter values between -100 and 100
+### If you want to allow users to enter values between -100 and 100
 ```kotlin
 val negativeValuesInput = findViewById<EditText>(R.id.negativeValuesInput)
 val negativeValuesInputWatcherBuilder = NumberWatcher.Builder()
@@ -72,7 +72,7 @@ negativeValuesInput.addTextChangedListener(negativeValuesInputWatcherBuilder.bui
     })
 ```
 
-### If you want to add mask
+### If you want to add a mask
 ```kotlin
 val withMaskInput = findViewById<EditText>(R.id.withMaskInput)
 val withMaskInputWatcherBuilder = NumberWatcher.Builder()

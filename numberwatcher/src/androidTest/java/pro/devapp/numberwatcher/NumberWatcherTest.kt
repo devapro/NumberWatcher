@@ -1,4 +1,4 @@
-package pro.devapp.edittextutils
+package pro.devapp.numberwatcher
 
 import android.widget.EditText
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -8,12 +8,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class FormatterNumberWatcherTest {
+class NumberWatcherTest {
     @Test
     fun watcherTest() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val editText = EditText(appContext)
-        val formatterNumberWatcherBuilder = FormatterNumberWatcher.Builder()
+        val formatterNumberWatcherBuilder = NumberWatcher.Builder()
         formatterNumberWatcherBuilder.numbersAfterDecimalPoint = 2
         formatterNumberWatcherBuilder.maxValue = 100f
         formatterNumberWatcherBuilder.additional = "%"
@@ -89,7 +89,7 @@ class FormatterNumberWatcherTest {
     fun watcherTestForNegativeValues() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val editText = EditText(appContext)
-        val formatterNumberWatcherBuilder = FormatterNumberWatcher.Builder()
+        val formatterNumberWatcherBuilder = NumberWatcher.Builder()
         formatterNumberWatcherBuilder.numbersAfterDecimalPoint = 2
         formatterNumberWatcherBuilder.maxValue = 100f
         formatterNumberWatcherBuilder.minValue = -200f
@@ -132,7 +132,7 @@ class FormatterNumberWatcherTest {
     fun watcherTestMask() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val editText = EditText(appContext)
-        val formatterNumberWatcherBuilder = FormatterNumberWatcher.Builder()
+        val formatterNumberWatcherBuilder = NumberWatcher.Builder()
         formatterNumberWatcherBuilder.numbersAfterDecimalPoint = 2
         formatterNumberWatcherBuilder.maxValue = 100f
         formatterNumberWatcherBuilder.minValue = -200f

@@ -1,10 +1,10 @@
-package pro.devapp.edittextutils
+package pro.devapp.numberwatcher
 
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 
-class FormatterNumberWatcher private constructor(
+class NumberWatcher private constructor(
     private val editText: EditText,
     private val listener: (text: String) -> Unit,
     private val numbersAfterDecimalPoint: Int?,
@@ -214,7 +214,7 @@ class FormatterNumberWatcher private constructor(
          */
         var allowNegativeValues: Boolean = false
 
-        fun build(editText: EditText, listener: (text: String) -> Unit): FormatterNumberWatcher {
+        fun build(editText: EditText, listener: (text: String) -> Unit): NumberWatcher {
             maxValue?.let {
                 if (it <= 0f) {
                     throw Exception("must be more than 0")
@@ -227,7 +227,7 @@ class FormatterNumberWatcher private constructor(
                     allowNegativeValues = true
                 }
             }
-            return FormatterNumberWatcher(
+            return NumberWatcher(
                 editText,
                 listener,
                 numbersAfterDecimalPoint,

@@ -14,18 +14,18 @@
  
  you can find it in EditTextExtensions.kt
  
- - addTextListener - for easier adding text change listener (don't use with FormatterNumberWatcher)
+ - addTextListener - for easier adding text change listener (don't use with NumberWatcher)
  - setActionDoneListener - for listen "done" event
- - setNumberWatcher - for easier adding FormatterNumberWatcher
+ - setNumberWatcher - for easier adding NumberWatcher
  
- ## How to use FormatterNumberWatcher:
+ ## How to use NumberWatcher:
  
- You can see more examples in MainActivity.kt or FormatterNumberWatcherTest.kt
+ You can see more examples in MainActivity.kt or NumberWatcherTest.kt
  
  ### For input only integer values
  ```kotlin
     val integersInput = findViewById<EditText>(R.id.integersInput)
-    val integersInputWatcherBuilder = FormatterNumberWatcher.Builder()
+    val integersInputWatcherBuilder = NumberWatcher.Builder()
     integersInputWatcherBuilder.numbersAfterDecimalPoint = 0 // because we need integers
     integersInputWatcherBuilder.maxValue = 1000f // optional, for example max value 1000
     integersInput.addTextChangedListener(integersInputWatcherBuilder.build(integersInput){
@@ -36,7 +36,7 @@
 ### For input float with fixed numbers after decimal point
 ```kotlin
     val floatsInput = findViewById<EditText>(R.id.floatsInput)
-    val floatsInputWatcherBuilder = FormatterNumberWatcher.Builder()
+    val floatsInputWatcherBuilder = NumberWatcher.Builder()
     floatsInputWatcherBuilder.numbersAfterDecimalPoint = 2 // optional, for example we need only to numbers after decimal point
     floatsInputWatcherBuilder.maxValue = 1000f // optional, for example max value 1000
     floatsInput.addTextChangedListener(floatsInputWatcherBuilder.build(floatsInput){
@@ -47,7 +47,7 @@
 ### For adding string to the end of input
 ```kotlin
     val withEndStringInput = findViewById<EditText>(R.id.withEndString)
-    val withEndStringInputWatcherBuilder = FormatterNumberWatcher.Builder()
+    val withEndStringInputWatcherBuilder = NumberWatcher.Builder()
     withEndStringInputWatcherBuilder.numbersAfterDecimalPoint = 2 // optional, for example we need only to numbers after decimal point
     withEndStringInputWatcherBuilder.maxValue = 100f // optional, for example max value 100
     withEndStringInputWatcherBuilder.additional = "%" // optional, for example add % to the end of input

@@ -1,4 +1,4 @@
-package pro.devapp.edittextutils
+package pro.devapp.numberwatcher
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -32,7 +32,7 @@ fun EditText.setActionDoneListener(listener: () -> Unit) {
 }
 
 fun EditText.setNumberWatcher(
-    builder: FormatterNumberWatcher.Builder,
+    builder: NumberWatcher.Builder,
     listener: (text: String) -> Unit
 ) {
     addTextChangedListener(builder.build(this, listener))

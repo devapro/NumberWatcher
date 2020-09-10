@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import pro.devapp.numberwatcher.NumberWatcher
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val integersInput = findViewById<EditText>(R.id.integersInput)
-        val integersInputWatcherBuilder = FormatterNumberWatcher.Builder()
+        val integersInputWatcherBuilder = NumberWatcher.Builder()
         integersInputWatcherBuilder.numbersAfterDecimalPoint = 0 // because we need integers
         integersInputWatcherBuilder.maxValue = 1000f // optional, for example max value 1000
         integersInput.addTextChangedListener(integersInputWatcherBuilder.build(integersInput) {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         val floatsInput = findViewById<EditText>(R.id.floatsInput)
-        val floatsInputWatcherBuilder = FormatterNumberWatcher.Builder()
+        val floatsInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point
         floatsInputWatcherBuilder.numbersAfterDecimalPoint = 2
         floatsInputWatcherBuilder.maxValue = 1000f // optional, for example max value 1000
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val withEndStringInput = findViewById<EditText>(R.id.withEndString)
-        val withEndStringInputWatcherBuilder = FormatterNumberWatcher.Builder()
+        val withEndStringInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point
         withEndStringInputWatcherBuilder.numbersAfterDecimalPoint = 2
         withEndStringInputWatcherBuilder.maxValue = 100f // optional, for example max value 100
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             })
 
         val negativeValuesInput = findViewById<EditText>(R.id.negativeValuesInput)
-        val negativeValuesInputWatcherBuilder = FormatterNumberWatcher.Builder()
+        val negativeValuesInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point
         negativeValuesInputWatcherBuilder.numbersAfterDecimalPoint = 2
         negativeValuesInputWatcherBuilder.maxValue = 100f // optional, for example max value 100
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             })
 
         val withMaskInput = findViewById<EditText>(R.id.withMaskInput)
-        val withMaskInputWatcherBuilder = FormatterNumberWatcher.Builder()
+        val withMaskInputWatcherBuilder = NumberWatcher.Builder()
         // optional, for example we need only to numbers after decimal point
         withMaskInputWatcherBuilder.numbersAfterDecimalPoint = 2
         withMaskInputWatcherBuilder.maxValue = 1000000f // optional, for example max value 100

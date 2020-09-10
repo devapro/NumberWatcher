@@ -12,7 +12,7 @@ class FormatterNumberWatcher private constructor(
     private val minValue: Float?,
     private val additional: String?,
     private val inputMask: String?,
-    private val allowNegativeValues: Boolean = false
+    allowNegativeValues: Boolean = false
 ) : TextWatcher {
 
     private val re = if (allowNegativeValues) Regex("[^0-9.,\\-]") else Regex("[^0-9.,]")
@@ -87,8 +87,39 @@ class FormatterNumberWatcher private constructor(
             clearValue = clearValue.substring(0, clearValue.length - 1)
         }
 
+        inputMask?.let { mask ->
+            val editableLength = editable.length
+            val inputMaskLength = mask.length
+            val maskedValue = StringBuffer()
+            val isNegativeValue = (editable.toString().toFloatOrNull() ?: 0f) < 0f
+            var offset = 0
+            for (i in 0 until inputMaskLength) {
+                if (editable.length <= offset) {
+                    break
+                }
+                if (isNegativeValue && i < 1) {
+                    if (editable.isEmpty()) {
+                        break
+                    }
+                    maskedValue.append(editable[0])
+                    offset++
+                    continue
+                }
+                if (mask[i - if (isNegativeValue) 1 else 0] != '#') {
+                    maskedValue.append(mask[i - if (isNegativeValue) 1 else 0])
+                } else {
+                    maskedValue.append(editable[offset])
+                    offset++
+                }
+            }
+            if (editableLength > offset) {
+                maskedValue.append(editable.toString().substring(offset))
+            }
+            editable.replace(0, editable.length, maskedValue)
+        }
+
         if (clearValue.isNotEmpty() && additional != null) {
-            editable.replace(0, editable.length, editable.toString() + additional)
+            editable.append(additional)
         }
 
         listener(clearValue)
@@ -173,6 +204,12 @@ class FormatterNumberWatcher private constructor(
         var additional: String? = null
 
         /**
+         * Set string input mask
+         * each number mark as #
+         */
+        var inputMask: String? = null
+
+        /**
          * Allow input negative values
          */
         var allowNegativeValues: Boolean = false
@@ -197,7 +234,7 @@ class FormatterNumberWatcher private constructor(
                 maxValue,
                 minValue,
                 additional,
-                null,
+                inputMask,
                 allowNegativeValues
             )
         }

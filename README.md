@@ -8,11 +8,19 @@
  - set max positive value
  - set min negative value
  - enable or disable negative values fo input
+ - add text mask (for example ##/##/##)
  
- ## How to use:
+ ## Additional I created some useful extension functions
  
- You can see MainActivity.kt for example of usage
+ you can find it in EditTextExtensions.kt
  
+ - addTextListener - for easier adding text change listener (don't use with FormatterNumberWatcher)
+ - setActionDoneListener - for listen "done" event
+ - setNumberWatcher - for easier adding FormatterNumberWatcher
+ 
+ ## How to use FormatterNumberWatcher:
+ 
+ You can see more examples in MainActivity.kt or FormatterNumberWatcherTest.kt
  
  ### For input only integer values
  ```kotlin

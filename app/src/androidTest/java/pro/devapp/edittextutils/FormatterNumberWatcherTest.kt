@@ -127,4 +127,72 @@ class FormatterNumberWatcherTest {
         editText.setText("llll")
         Assert.assertEquals("enter llll ", "", resultString)
     }
+
+    @Test
+    fun watcherTestMask() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val editText = EditText(appContext)
+        val formatterNumberWatcherBuilder = FormatterNumberWatcher.Builder()
+        formatterNumberWatcherBuilder.numbersAfterDecimalPoint = 2
+        formatterNumberWatcherBuilder.maxValue = 100f
+        formatterNumberWatcherBuilder.minValue = -200f
+        formatterNumberWatcherBuilder.additional = "%"
+        formatterNumberWatcherBuilder.allowNegativeValues = true
+        formatterNumberWatcherBuilder.inputMask = "#-#-#"
+        var resultString = ""
+        val watcher = formatterNumberWatcherBuilder.build(editText) { resultString = it }
+        editText.addTextChangedListener(watcher)
+
+        editText.setText("")
+        editText.setText("-123")
+        Assert.assertEquals("enter -123 ", "-123", resultString)
+        Assert.assertEquals("enter -123 ", "-1-2-3%", editText.text.toString())
+
+        editText.setText("")
+        editText.setText("-223")
+        Assert.assertEquals("enter -223 ", "-22", resultString)
+        Assert.assertEquals("enter -223 ", "-2-2%", editText.text.toString())
+
+        editText.setText("")
+        editText.setText("-9.,9.")
+        Assert.assertEquals("enter -9.,9. ", "-9.9", resultString)
+        Assert.assertEquals("enter -9.,9.", "-9-.-9%", editText.text.toString())
+
+        editText.setText("")
+        editText.setText("--9.,9.")
+        Assert.assertEquals("enter -9.,9. ", "-9.9", resultString)
+        Assert.assertEquals("enter -9.,9. ", "-9-.-9%", editText.text.toString())
+
+        editText.setText("")
+        editText.setText("--9.-,9.-")
+        Assert.assertEquals("enter -9.,9. ", "-9.9", resultString)
+        Assert.assertEquals("enter -9.,9. ", "-9-.-9%", editText.text.toString())
+
+        editText.setText("")
+        editText.setText(null)
+        Assert.assertEquals("enter null ", "", resultString)
+        Assert.assertEquals("enter null ", "", editText.text.toString())
+
+        editText.setText("")
+        editText.setText("llll")
+        Assert.assertEquals("enter llll ", "", resultString)
+        Assert.assertEquals("enter llll ", "", editText.text.toString())
+
+        editText.setText("")
+        editText.setText("-199")
+        Assert.assertEquals("enter -199 ", "-199", resultString)
+        Assert.assertEquals("enter -199 ", "-1-9-9%", editText.text.toString())
+
+
+        formatterNumberWatcherBuilder.maxValue = 10000f
+        formatterNumberWatcherBuilder.minValue = -20000f
+        editText.removeTextChangedListener(watcher)
+        val watcher2 = formatterNumberWatcherBuilder.build(editText) { resultString = it }
+        editText.addTextChangedListener(watcher2)
+
+        editText.setText("")
+        editText.setText("-19999")
+        Assert.assertEquals("enter -19999 ", "-19999", resultString)
+        Assert.assertEquals("enter -19999 ", "-1-9-999%", editText.text.toString())
+    }
 }

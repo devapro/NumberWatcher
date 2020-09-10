@@ -30,3 +30,10 @@ fun EditText.setActionDoneListener(listener: () -> Unit) {
         return@setOnEditorActionListener false
     }
 }
+
+fun EditText.setNumberWatcher(
+    builder: FormatterNumberWatcher.Builder,
+    listener: (text: String) -> Unit
+) {
+    addTextChangedListener(builder.build(this, listener))
+}

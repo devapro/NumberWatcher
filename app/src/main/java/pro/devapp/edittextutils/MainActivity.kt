@@ -57,5 +57,22 @@ class MainActivity : AppCompatActivity() {
             ) {
                 Log.d("negativeValuesInput", it)
             })
+
+        val withMaskInput = findViewById<EditText>(R.id.withMaskInput)
+        val withMaskInputWatcherBuilder = FormatterNumberWatcher.Builder()
+        // optional, for example we need only to numbers after decimal point
+        withMaskInputWatcherBuilder.numbersAfterDecimalPoint = 2
+        withMaskInputWatcherBuilder.maxValue = 1000000f // optional, for example max value 100
+        withMaskInputWatcherBuilder.minValue = -2000000f // optional, for example min value -200
+        withMaskInputWatcherBuilder.allowNegativeValues = true
+        // optional, for example add % to the end of input
+        withMaskInputWatcherBuilder.additional = "%"
+        withMaskInputWatcherBuilder.inputMask = "##/##/##"
+        withMaskInput.addTextChangedListener(
+            withMaskInputWatcherBuilder.build(
+                withMaskInput
+            ) {
+                Log.d("withMaskInput", it)
+            })
     }
 }

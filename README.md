@@ -5,6 +5,9 @@
  - Get only valid string to listener
  - Adjusting numbers after decimal point (set 0 for integer)
  - Adding any string to the input end
+ - set max positive value
+ - set min negative value
+ - enable or disable negative values fo input
  
  ## How to use:
  
